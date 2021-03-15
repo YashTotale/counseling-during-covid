@@ -31,4 +31,60 @@
 
 - Expected Timeline: August 2021 to October 2021
 - Plan
-  - Build static website with React to display data (reanalyze data daily through automated GitHub Actions)
+  - Build a static website with React to display data (reanalyze data daily through automated GitHub Actions)
+
+## Google Form Design
+
+**[Preview Google Form](https://docs.google.com/forms/d/e/1FAIpQLSfaqHZGaKglAcPa4vSAEM-XCKSvlPoGOzFk6RPq_IFLs1Tl0Q/viewform)**
+
+\*Required
+
+### Page 1
+
+- **Email** (Short answer)\*
+- **First Name** (Short answer)\*
+- **Last Name** (Short answer)\*
+- **High School Name** (Short answer)\*
+- **High School City** (Short answer)\*
+- **High School State** (Single Choice)\*
+  - Choices: 50 States
+- **High School Zipcode** (Short answer)
+
+### Page 2 (Student Impact and Response)
+
+- **What words would you use to describe students in general during COVID?** (Multiple Choice)\*
+  - Motivated
+  - Positive
+  - Optimistic
+  - Carefree
+  - Sad
+  - Stressed
+  - Lonely
+  - Worried
+  - Anxious
+  - Lost
+  - Panicked
+  - Depressed
+  - Other (Short answer)
+- **What are the major challenges that students you interact with are facing during COVID?** (Paragraph)\*
+- **What are some of the ways students have adapted to deal with new forms of learning (online, hybrid, asynchronous, etc.)?** (Paragraph)
+- **What are some of the ways students have adapted to deal with new forms of social interaction?** (Paragraph)
+- **Have students academically exceeded, met, or been below your expectations?** (Single Choice)\*
+  - Exceeded
+  - Met
+  - Below
+- **Explain your selection to the question above.** (Paragraph)\*
+
+### Page 3 (Counselor Impact and Response)
+
+- **What words would you use to describe yourself and other counselors during COVID?** (Multiple Choice)\*
+  - Motivated
+  - Positive
+  - Optimistic
+  - Stressed
+  - Worried
+  - Anxious
+  - Lost
+  - Other (Short answer)
+- **What steps have you taken to better interact with students online? (Examples: created online presentations, organized online meetings)** (Paragraph)
+- **Do you consent to your responses being used anonymously in this research project?** (Single Choice: Yes)\*
