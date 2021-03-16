@@ -1,3 +1,4 @@
+<p align="center"><img src="https://raw.githubusercontent.com/YashTotale/counseling-during-covid/main/static/icon.png" alt="Icon" width="150"></p>
 <h1 align="center">Counseling during COVID</h1>
 <p align="center">Counseling during COVID is a research project with the intent of gathering and analyzing data about COVID's impact on students through the lens of high school counselors.</p>
 
