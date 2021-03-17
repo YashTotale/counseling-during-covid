@@ -2,6 +2,14 @@
 <h1 align="center">Counseling during COVID</h1>
 <p align="center">Counseling during COVID is a research project with the intent of gathering and analyzing data about COVID's impact on students through the lens of high school counselors.</p>
 
+- [Roadmap](#roadmap)
+  - [Part 1: Data Collection](#part-1-data-collection)
+  - [Part 2: Data Analysis](#part-2-data-analysis)
+  - [Part 3: Data Display](#part-3-data-display)
+- [Google Form Design](#google-form-design)
+  - [Page 1](#page-1)
+  - [Page 2](#page-2)
+
 ## Roadmap
 
 ### Part 1: Data Collection
@@ -9,7 +17,6 @@
 - Expected Timeline: March 2021 to May 2021
 - (Tentative) Expected number of responses: 50 to 100
 - Plan
-  - Ask for input and suggestions from Amador counselors to design Google Form
   - Reach out to high school counselors to request responses to Google Form
   - Automate organization of form responses on Google Sheet
 
@@ -51,7 +58,7 @@
   - Choices: 50 States
 - **High School Zipcode** (Short answer)
 
-### Page 2 (Student Impact and Response)
+### Page 2
 
 - **What words would you use to describe students in general during COVID?** (Multiple Choice)\*
   - Motivated
@@ -75,17 +82,6 @@
   - Met
   - Below
 - **Explain your selection to the question above.** (Paragraph)\*
-
-### Page 3 (Counselor Impact and Response)
-
-- **What words would you use to describe yourself and other counselors during COVID?** (Multiple Choice)\*
-  - Motivated
-  - Positive
-  - Optimistic
-  - Stressed
-  - Worried
-  - Anxious
-  - Lost
-  - Other (Short answer)
 - **What steps have you taken to better interact with students online? (Examples: created online presentations, organized online meetings)** (Paragraph)
+- **How would you rate your school's measures to improve student mental health and academic performance during COVID?** (Linear Scale: 0 to 10)\*
 - **Do you consent to your responses being used anonymously in this research project?** (Single Choice: Yes)\*
