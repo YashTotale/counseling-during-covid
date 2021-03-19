@@ -1,1 +1,20 @@
+# See https://help.github.com/articles/ignoring-files/ for more information on ignoring files.
+
+# dependencies
+node_modules/
+
+# testing
+coverage/
+
+# production
+dist/
+out/
+build/
+
+# private/secret files
+.env
+
+# misc
+logs/
+data/
 .DS_Store
