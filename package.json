@@ -2,10 +2,12 @@
   "name": "counseling-during-covid",
   "private": true,
   "scripts": {
-    "data:high-schools": "ts-node scripts/get-high-schools.ts"
+    "data:high-schools": "ts-node scripts/get-high-schools.ts",
+    "data:form-responses": "ts-node scripts/get-form-responses.ts"
   },
   "dependencies": {},
   "devDependencies": {
+    "googleapis": "^68.0.0",
     "@hack4impact/logger": "^3.0.2",
     "@types/mkdirp": "^1.0.1",
     "@types/node": "^14.14.35",

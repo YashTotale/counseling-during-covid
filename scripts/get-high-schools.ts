@@ -45,7 +45,7 @@ const getStateHighSchools = async (
           city: attrs["CITY"],
           county: attrs["COUNTY"],
           zip: attrs["ZIP"],
-          enrollment: attrs["ENROLLMENT"],
+          enrollment: attrs["ENROLLMENT"] < 0 ? null : attrs["ENROLLMENT"],
           website:
             attrs["WEBSITE"] === "NOT AVAILABLE" ? null : attrs["WEBSITE"],
         },
