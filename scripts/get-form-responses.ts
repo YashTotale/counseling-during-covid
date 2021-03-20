@@ -1,17 +1,19 @@
 // Externals
+import { config } from "dotenv-safe";
+config();
 import Logger from "@hack4impact/logger";
 import { writeFile } from "fs/promises";
 import { google } from "googleapis";
 import { format } from "prettier";
+
+// Internals
+import googleAuth from "./utils/google-auth";
 import {
   FORM_QUESTIONS,
   FORM_RESPONSES,
   SPREADSHEET_ID,
   SPREADSHEET_TABLES,
 } from "./utils/constants";
-
-// Internals
-import googleAuth from "./utils/google-auth";
 
 type FormResponse = Record<string, FormattedValue>;
 

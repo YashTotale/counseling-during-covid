@@ -34,7 +34,7 @@ const sendEmails = async () => {
 
     await transporter.sendMail({
       from: process.env.MAIL_USERNAME,
-      to: process.env.MAIL_USERNAME,
+      to: counselor.email,
       subject:
         "Request for Participation: Counseling During COVID Research Project",
       html: content,

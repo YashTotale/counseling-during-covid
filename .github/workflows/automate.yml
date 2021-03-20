@@ -1,0 +1,68 @@
+name: Automated Jobs
+
+on:
+  schedule:
+    - cron: "0 14 * * 1-5"
+  workflow_dispatch:
+
+jobs:
+  data:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        data:
+          - high-schools
+          - form-responses
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.4
+        with:
+          node-version: 15.x
+
+      - name: Setup Environment Variables
+        run: echo '${{ secrets.ENV_FILE }}' > .env
+
+      - name: Setup Google Credentials
+        run: echo '${{ secrets.GOOGLE_CREDENTIALS }}' > credentials.json
+
+      - name: Setup Google OAuth
+        run: echo '${{ secrets.GOOGLE_OAUTH }}' > oauth-token.json
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Data Job
+        run: npm run data:'${{ matrix.data }}'
+
+  actions:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        action:
+          - send-emails
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Setup Node
+        uses: actions/setup-node@v2.1.4
+        with:
+          node-version: 15.x
+
+      - name: Setup Environment Variables
+        run: echo '${{ secrets.ENV_FILE }}' > .env
+
+      - name: Setup Google Credentials
+        run: echo '${{ secrets.GOOGLE_CREDENTIALS }}' > credentials.json
+
+      - name: Setup Google OAuth
+        run: echo '${{ secrets.GOOGLE_OAUTH }}' > oauth-token.json
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Action Job
+        run: npm run action:'${{ matrix.action }}'
