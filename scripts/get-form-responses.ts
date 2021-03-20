@@ -3,7 +3,12 @@ import Logger from "@hack4impact/logger";
 import { writeFile } from "fs/promises";
 import { google } from "googleapis";
 import { format } from "prettier";
-import { FORM_QUESTIONS, FORM_RESPONSES } from "./utils/constants";
+import {
+  FORM_QUESTIONS,
+  FORM_RESPONSES,
+  SPREADSHEET_ID,
+  SPREADSHEET_TABLES,
+} from "./utils/constants";
 
 // Internals
 import googleAuth from "./utils/google-auth";
@@ -19,8 +24,8 @@ const getFormResponses = async () => {
   });
 
   const response = await sheets.spreadsheets.values.get({
-    spreadsheetId: "1er3A0lKwR8fo0p2-8y_hv2ZL2NTeG2RPaK_9HPiXu-8",
-    range: "Form Responses",
+    spreadsheetId: SPREADSHEET_ID,
+    range: SPREADSHEET_TABLES.formResponses,
   });
 
   const values: string[][] = response.data.values ?? [];

@@ -5,12 +5,16 @@ import { readFile } from "fs/promises";
 import { join } from "path";
 import { google, Auth, sheets_v4 } from "googleapis";
 import { createTransport } from "nodemailer";
+import Logger from "@hack4impact/logger";
 
 // Internals
 import googleAuth from "./utils/google-auth";
-import { STATIC_FOLDER } from "./utils/constants";
+import {
+  SPREADSHEET_ID,
+  SPREADSHEET_TABLES,
+  STATIC_FOLDER,
+} from "./utils/constants";
 import { escapeRegex } from "./utils/helpers";
-import Logger from "@hack4impact/logger";
 
 let oAuth2Client: Auth.OAuth2Client;
 let sheetsAPI: sheets_v4.Sheets;
@@ -36,55 +40,22 @@ const sendEmails = async () => {
       html: content,
     });
 
+    await afterSend(counselor);
+
     Logger.success(`Sent email!`);
   }
 };
 
-const setUpTransport = () => {
-  return createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
-    secure: true,
-    auth: {
-      user: process.env.MAIL_USERNAME,
-      pass: process.env.MAIL_PASSWORD,
+const afterSend = async (counselor: Counselor) => {
+  await sheetsAPI.spreadsheets.values.append({
+    spreadsheetId: SPREADSHEET_ID,
+    range: SPREADSHEET_TABLES.askedCounselors,
+    valueInputOption: "USER_ENTERED",
+    insertDataOption: "INSERT_ROWS",
+    requestBody: {
+      values: [Object.values(counselor)],
     },
   });
-};
-
-const getMailTemplate = () => {
-  return readFile(join(STATIC_FOLDER, "mail-template.html"), "utf-8");
-};
-
-const getCounselorsToEmail = async () => {
-  if (!oAuth2Client) {
-    oAuth2Client = await googleAuth();
-    sheetsAPI = google.sheets({
-      version: "v4",
-      auth: oAuth2Client,
-    });
-  }
-
-  const response = await sheetsAPI.spreadsheets.values.get({
-    spreadsheetId: "1er3A0lKwR8fo0p2-8y_hv2ZL2NTeG2RPaK_9HPiXu-8",
-    range: "Counselors",
-  });
-
-  const values: string[][] = response.data.values ?? [];
-
-  const keys: string[] = values.splice(0, 1)[0];
-
-  const counselors = values.reduce((arr, counselor) => {
-    const counselorObj = counselor.reduce((obj, value, i) => {
-      const key = keys[i].toLowerCase().replace(" ", "-");
-
-      return { ...obj, [key]: value };
-    }, {});
-
-    return [...arr, counselorObj];
-  }, [] as Counselor[]);
-
-  return counselors;
 };
 
 const getMailContent = (template: string, counselor: Counselor) => {
@@ -98,6 +69,65 @@ const getMailContent = (template: string, counselor: Counselor) => {
   });
 
   return content;
+};
+
+const getCounselorsToEmail = async () => {
+  if (!oAuth2Client) {
+    oAuth2Client = await googleAuth();
+    sheetsAPI = google.sheets({
+      version: "v4",
+      auth: oAuth2Client,
+    });
+  }
+
+  const { data: counselorData } = await sheetsAPI.spreadsheets.values.get({
+    spreadsheetId: SPREADSHEET_ID,
+    range: SPREADSHEET_TABLES.counselors,
+  });
+
+  const { data: askedCounselorData } = await sheetsAPI.spreadsheets.values.get({
+    spreadsheetId: SPREADSHEET_ID,
+    range: SPREADSHEET_TABLES.askedCounselors,
+  });
+
+  const rawCounselors: string[][] = counselorData.values ?? [];
+  const rawAskedCounselors: string[][] = askedCounselorData.values ?? [];
+
+  const keys = rawCounselors.splice(0, 1)[0];
+
+  const counselors = rawCounselors.reduce((arr, counselor) => {
+    const isAsked = rawAskedCounselors.find(
+      (asked) => JSON.stringify(asked) === JSON.stringify(counselor)
+    );
+
+    if (isAsked) return arr;
+
+    const counselorObj = counselor.reduce((obj, value, i) => {
+      const key = keys[i].toLowerCase().replace(" ", "-");
+
+      return { ...obj, [key]: value };
+    }, {});
+
+    return [...arr, counselorObj];
+  }, [] as Counselor[]);
+
+  return counselors;
+};
+
+const getMailTemplate = () => {
+  return readFile(join(STATIC_FOLDER, "mail-template.html"), "utf-8");
+};
+
+const setUpTransport = () => {
+  return createTransport({
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      user: process.env.MAIL_USERNAME,
+      pass: process.env.MAIL_PASSWORD,
+    },
+  });
 };
 
 sendEmails();

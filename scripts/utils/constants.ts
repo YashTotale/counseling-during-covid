@@ -1,5 +1,13 @@
 import { join } from "path";
 
+export const SPREADSHEET_ID = "1er3A0lKwR8fo0p2-8y_hv2ZL2NTeG2RPaK_9HPiXu-8";
+
+export const SPREADSHEET_TABLES = {
+  formResponses: "Form Responses",
+  counselors: "Counselors",
+  askedCounselors: "Asked Counselors",
+};
+
 export const ROOT_FOLDER = join(__dirname, "..", "..");
 
 export const LOGS_FOLDER = join(ROOT_FOLDER, "logs");
