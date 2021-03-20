@@ -42,7 +42,7 @@ const sendEmails = async () => {
 
     await afterSend(counselor);
 
-    Logger.success(`Sent email!`);
+    Logger.success("Sent email!");
   }
 };
 

@@ -16,6 +16,10 @@ import {
 import { School } from "./utils/types";
 import { setUp } from "./utils/helpers";
 
+interface RawSchool {
+  attributes: Record<string, string | number>;
+}
+
 const getStateHighSchools = async (
   stateAbbreviation: string,
   stateName: string
@@ -24,7 +28,7 @@ const getStateHighSchools = async (
     `https://services1.arcgis.com/Hp6G80Pky0om7QvQ/arcgis/rest/services/Public_Schools/FeatureServer/0/query?where=LEVEL_%20%3D%20'HIGH'%20AND%20COUNTRY%20%3D%20'USA'%20AND%20ST_GRADE%20%3D%20'09'%20AND%20STATE%20%3D%20'${stateAbbreviation}'&outFields=*&outSR=4326&f=json`
   );
 
-  const schools: any[] = response.data.features;
+  const schools: RawSchool[] = response.data.features;
 
   const schoolData: Record<number, School> = schools.reduce(
     (data, schoolObj) => {

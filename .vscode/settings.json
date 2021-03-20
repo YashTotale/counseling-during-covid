@@ -1,0 +1,14 @@
+{
+  "files.associations": {
+    ".markdownlintignore": "ignore",
+    ".markdownlintrc": "json",
+
+    ".prettierignore": "ignore",
+    ".prettierc": "json",
+
+    ".eslintignore": "ignore",
+    ".eslintrc": "json",
+
+    ".lintstagedrc": "json"
+  }
+}
