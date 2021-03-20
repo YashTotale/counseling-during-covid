@@ -8,6 +8,8 @@ import { FORM_QUESTIONS, FORM_RESPONSES } from "./utils/constants";
 // Internals
 import googleAuth from "./utils/google-auth";
 
+type FormResponse = Record<string, FormattedValue>;
+
 const getFormResponses = async () => {
   const oAuth2Client = await googleAuth();
 
@@ -21,9 +23,9 @@ const getFormResponses = async () => {
     range: "Form Responses",
   });
 
-  const values = response.data.values ?? [];
+  const values: string[][] = response.data.values ?? [];
 
-  const keys = values.splice(0, 1)[0];
+  const keys: string[] = values.splice(0, 1)[0];
 
   const formResponses = values.reduce((arr, formResponse) => {
     const responseObj = formResponse.reduce(
@@ -32,7 +34,7 @@ const getFormResponses = async () => {
     );
 
     return [...arr, responseObj];
-  }, []);
+  }, [] as FormResponse[]);
 
   const formatted = format(JSON.stringify(formResponses), {
     parser: "json-stringify",
