@@ -6,6 +6,8 @@ export const LOGS_FOLDER = join(ROOT_FOLDER, "logs");
 
 export const DATA_FOLDER = join(ROOT_FOLDER, "data");
 
+export const STATIC_FOLDER = join(ROOT_FOLDER, "static");
+
 export const HIGH_SCHOOLS_FOLDER = join(DATA_FOLDER, "high-schools");
 
 export const FORM_RESPONSES = join(DATA_FOLDER, "form-responses.json");

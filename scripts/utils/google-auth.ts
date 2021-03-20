@@ -1,4 +1,6 @@
 // Externals
+import { config } from "dotenv-safe";
+config();
 import { readFile, writeFile } from "fs/promises";
 import { join } from "path";
 import { promisify } from "util";
@@ -53,7 +55,7 @@ const googleAuth = async (): Promise<Auth.OAuth2Client> => {
 
     Logger.line();
     Logger.log(
-      `${Logger.COLORS.FgBlue}Authorize by signing in with yt0569@pleasantonusd.net${Logger.COLORS.Reset}: ${authUrl}`
+      `${Logger.COLORS.FgBlue}Authorize by signing in with ${process.env.MAIL_USERNAME}${Logger.COLORS.Reset}: ${authUrl}`
     );
 
     const rl = createInterface({

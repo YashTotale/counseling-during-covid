@@ -12,3 +12,7 @@ export const setUp = async () => {
 export const sleep = (ms: number) => {
   return new Promise<void>((resolve) => setTimeout(resolve, ms));
 };
+
+export const escapeRegex = (text: string): string => {
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
