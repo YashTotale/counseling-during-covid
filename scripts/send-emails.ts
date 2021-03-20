@@ -62,11 +62,19 @@ const getMailContent = (template: string, counselor: Counselor) => {
   let content = template;
 
   Object.entries(counselor).forEach(([key, value]) => {
+    if (!value.length) throw new Error(`No ${key} found for counselor`);
+
     content = content.replace(
       new RegExp(escapeRegex(`{{${key}}}`), "g"),
       value
     );
   });
+
+  const search = content.match(/\{\{(.*)\}\}/);
+
+  if (search !== null) {
+    throw new Error(`Unresolved template variable '${search[1]}'`);
+  }
 
   return content;
 };
