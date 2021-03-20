@@ -14,10 +14,12 @@ import {
   SPREADSHEET_ID,
   SPREADSHEET_TABLES,
 } from "./utils/constants";
+import { setUp } from "./utils/helpers";
 
 type FormResponse = Record<string, FormattedValue>;
 
 const getFormResponses = async () => {
+  await setUp();
   const oAuth2Client = await googleAuth();
 
   const sheets = google.sheets({
