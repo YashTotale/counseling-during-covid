@@ -104,6 +104,8 @@ const getCounselorsToEmail = async () => {
   const keys = rawCounselors.splice(0, 1)[0];
 
   const counselors = rawCounselors.reduce((arr, counselor) => {
+    if (counselor.length === 0) return arr;
+
     const isAsked = rawAskedCounselors.find(
       (asked) => JSON.stringify(asked) === JSON.stringify(counselor)
     );
