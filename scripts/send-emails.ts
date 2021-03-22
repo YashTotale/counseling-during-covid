@@ -66,7 +66,7 @@ const getMailContent = (template: string, counselor: Counselor) => {
 
     content = content.replace(
       new RegExp(escapeRegex(`{{${key}}}`), "g"),
-      value
+      value.trim()
     );
   });
 
