@@ -121,7 +121,7 @@ const getCounselorsToEmail = async () => {
     return [...arr, counselorObj];
   }, [] as Counselor[]);
 
-  return counselors;
+  return counselors.slice(0, 50);
 };
 
 const getMailTemplate = () => {

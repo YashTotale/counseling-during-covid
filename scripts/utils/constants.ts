@@ -23,8 +23,6 @@ export const FORM_RESPONSES = join(DATA_FOLDER, "form-responses.json");
 export const FORM_QUESTIONS = {
   timestamp: "Timestamp",
   email: "Email Address",
-  firstName: "First Name",
-  lastName: "Last Name",
   hsName: "High School Name",
   hsCity: "High School City",
   hsState: "High School State",
